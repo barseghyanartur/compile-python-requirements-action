@@ -1,0 +1,60 @@
+name: Test Compile pyproject.toml Action
+
+on:
+  push:
+    paths:
+      - 'examples/pyproject-toml/pyproject.toml'
+      - '.github/workflows/test-pyproject-toml-action.yml'
+      - 'action.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [
+          ubuntu-latest,
+          windows-latest,
+          macos-latest,
+        ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up platform-specific variables
+        id: vars
+        shell: bash
+        run: |
+          OS_NAME=$(echo ${{ matrix.os }} | tr '[:upper:]' '[:lower:]' | sed -e 's/[^a-zA-Z0-9]+/-/g')
+          echo "PLATFORM_SLUG=${OS_NAME%}" >> $GITHUB_ENV
+          echo "TARGET_BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+
+      - name: Run Compile and PR Requirements Action
+        uses: ./
+        with:
+          input-file: 'examples/pyproject-toml/pyproject.toml'
+          os-name: ${{ env.PLATFORM_SLUG }}
+          github-token: ${{ secrets.PAT_SECRET }}
+          output-directory: 'examples/pyproject-toml/requirements'  # Optional
+          prefix: ''  # Optional
+          target-branch: ${{ env.TARGET_BRANCH }}  # Pass the target branch to the action
+          create-artifact: 'true'  # Optional
+#          debug: 'true'
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: requirements-${{ env.PLATFORM_SLUG }}
+          path: examples/pyproject-toml/requirements/requirements.tar.gz
+          # 'warn' or 'ignore' are also available, defaults to `warn`
+          if-no-files-found: 'warn'
