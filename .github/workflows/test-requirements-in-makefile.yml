@@ -28,6 +28,7 @@ jobs:
           python-version: '3.11'
 
       - name: Test Makefile
+        shell: bash
         run: |
           cd examples/requirements-in/
           make install
