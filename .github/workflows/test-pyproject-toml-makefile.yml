@@ -1,0 +1,36 @@
+name: Test Makefile for pyproject-toml Example
+
+on:
+  push:
+    paths:
+      - 'examples/Makefile'
+      - 'examples/pyproject-toml/requirements/*'
+      - '.github/workflows/test-pyproject-toml-makefile.yml'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [
+          ubuntu-latest,
+          windows-latest,
+          macos-latest,
+        ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Test Makefile
+        shell: bash
+        run: |
+          cd examples/pyproject-toml/
+          make debug
+          make install
+          make pip-list
