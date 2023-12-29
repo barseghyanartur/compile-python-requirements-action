@@ -31,7 +31,6 @@ jobs:
         shell: bash
         run: |
           cd examples/requirements-in/
-          pwd
-          ls -al requirements
+          make debug
           make install
-          pip list
+          make pip-list

@@ -37,6 +37,14 @@ install: venv
 shell: venv
 	$(VENV)/bin/python
 
+debug:
+	pwd
+	ls -althr
+	ls -althr requirements
+
+pip-list: venv
+	$(VENV)/bin/pip list
+
 # Clean the virtual environment
 clean:
 	rm -rf $(VENV)
