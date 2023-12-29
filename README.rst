@@ -136,9 +136,11 @@ Write smart Makefile commands to pick the right requirements for local installat
     ifeq ($(OS),Windows_NT)
         detected_OS := Windows
         PYTHON := python
+        VENV_BIN := $(VENV)/Scripts
     else
         detected_OS := $(shell uname)
         PYTHON := python3
+        VENV_BIN := $(VENV)/bin
     endif
 
     # Define the requirement file based on the operating system
@@ -154,19 +156,22 @@ Write smart Makefile commands to pick the right requirements for local installat
     all: install
 
     # Create a virtual environment
-    venv: $(VENV)/bin/activate
+    venv: $(VENV_BIN)/activate
 
     # Virtual environment creation
-    $(VENV)/bin/activate:
+    $(VENV_BIN)/activate:
         $(PYTHON) -m venv $(VENV)
 
     # Install requirements into the virtual environment
     install: venv
-        $(VENV)/bin/pip install -r $(REQUIREMENTS_FILE)
+        $(VENV_BIN)/pip install -r $(REQUIREMENTS_FILE)
 
-    # Run shell from the virtual environment
+    # Enter virtual environment shell
     shell: venv
-        $(VENV)/bin/python
+        $(VENV_BIN)/python
+
+    pip-list: venv
+        $(VENV_BIN)/pip list
 
     # Clean the virtual environment
     clean:
