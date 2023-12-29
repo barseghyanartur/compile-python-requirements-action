@@ -6,7 +6,7 @@ authors = [
     { name = "Your Name", email = "youremail@example.com" }
 ]
 dependencies = [
-    "Pillow",
+    "torch",
 ]
 
 [build-system]
