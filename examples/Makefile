@@ -12,7 +12,7 @@ endif
 
 # Define the requirement file based on the operating system
 ifeq ($(detected_OS),Windows)
-    REQUIREMENTS_FILE := requirements\windows-latest.txt
+    REQUIREMENTS_FILE := requirements/windows-latest.txt
 else ifeq ($(detected_OS),Darwin)
     REQUIREMENTS_FILE := requirements/macos-latest.txt
 else ifeq ($(detected_OS),Linux)

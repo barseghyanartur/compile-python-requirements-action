@@ -31,5 +31,7 @@ jobs:
         shell: bash
         run: |
           cd examples/requirements-in/
+          pwd
+          ls -al requirements
           make install
           pip list
