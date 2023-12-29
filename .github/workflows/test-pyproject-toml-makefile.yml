@@ -1,11 +1,11 @@
-name: Test Makefile for requirements-in Example
+name: Test Makefile for pyproject-toml Example
 
 on:
   push:
     paths:
       - 'examples/Makefile'
-      - 'examples/requirements-in/requirements/*'
-      - '.github/workflows/test-requirements-in-makefile.yml'
+      - 'examples/pyproject-toml/requirements/*'
+      - '.github/workflows/test-pyproject-toml-makefile.yml'
   workflow_dispatch:
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
       - name: Test Makefile
         shell: bash
         run: |
-          cd examples/requirements-in/
+          cd examples/pyproject-toml/
           make debug
           make install
           make pip-list
