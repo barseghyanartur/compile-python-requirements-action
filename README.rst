@@ -119,6 +119,10 @@ Additionally, it might be useful to allow the following too:
 - ``Commit statuses``: Read-only.
 - ``Metadata``: Read-only.
 
+Finally, create a ``New repository secret`` from ``Secrets and variables``
+section of your repository ``Settings``, specify ``PAT_TOKEN`` as ``Name`` and
+paste the content of newly created PAT as ``Secret``.
+
 Write smart Makefile commands to pick the right requirements for local installation
 -----------------------------------------------------------------------------------
 **Makefile** example
