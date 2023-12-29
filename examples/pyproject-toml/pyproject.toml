@@ -1,0 +1,14 @@
+[project]
+name = "sample-project"
+version = "0.1.0"
+description = "A sample project to demonstrate GitHub Actions with cryptography"
+authors = [
+    { name = "Your Name", email = "youremail@example.com" }
+]
+dependencies = [
+    "Pillow",
+]
+
+[build-system]
+requires = ["setuptools>=40.6.0", "wheel"]
+build-backend = "setuptools.build_meta"
