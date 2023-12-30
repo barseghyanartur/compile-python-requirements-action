@@ -3,6 +3,14 @@ compile-python-requirements-action
 ==================================
 Compile Python requirement files for MacOs, Linux or Windows.
 
+.. image:: https://readthedocs.org/projects/compile-python-requirements-action/badge/?version=latest
+    :target: http://compile-python-requirements-action.readthedocs.io
+    :alt: Documentation Status
+
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+   :target: https://github.com/barseghyanartur/compile-python-requirements-action/#License
+   :alt: MIT
+
 .. Internal references
 
 .. _GitHub issues: https://github.com/barseghyanartur/compile-python-requirements-action/issues
