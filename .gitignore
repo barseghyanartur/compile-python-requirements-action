@@ -36,3 +36,4 @@ local_settings.py
 *db.sqlite3*
 .mypy_cache/
 sample_project.egg-info/
+compile_python_requirements_action.egg-info/
