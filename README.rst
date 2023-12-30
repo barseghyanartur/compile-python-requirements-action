@@ -235,7 +235,7 @@ Example usage
               echo "TARGET_BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
 
           - name: Run Compile and PR Requirements Action
-            uses: ./
+            uses: barseghyanartur/compile-python-requirements-action@0.1
             with:
               input-file: 'examples/requirements.in'
               os-name: ${{ env.PLATFORM_SLUG }}
