@@ -81,7 +81,7 @@ clean:
 	rm -rf dist/
 
 compile-requirements:
-	$(VENV_BIN)/python -m piptools compile --extra all -o docs/requirements.txt pyproject.toml
+	$(VENV_BIN)/python -m piptools compile --extra docs -o docs/requirements.txt pyproject.toml
 
 update-version:
 	#sed -i 's/"version": "[0-9.]\+"/"version": "$(VERSION)"/' package.json
